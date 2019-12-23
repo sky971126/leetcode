@@ -12,6 +12,7 @@ class Node:
         self.random = random
 """
 class Solution:
+    """
     def copyRandomList(self, head: 'Node') -> 'Node':
         if head == None:
             return None
@@ -33,5 +34,40 @@ class Solution:
             else:
                 d[i].random = None
         return new_head
-        
+    """
+
+
+
+
+
+
+
+
+
+    def copyRandomList(self, head: 'Node') -> 'Node':
+        if not head:
+            return None
+        h1 = head
+        h2 = Node(head.val, None, None)
+        d = {h1:h2}
+        h1 = h1.next
+        while h1:
+            h2.next = Node(h1.val, None, None)
+            h2 = h2.next
+            d[h1] = h2
+            h1 = h1.next
+        h1 = head
+        while h1:
+            if h1.random:
+                h2 = d[h1]
+                h2_rand = d[h1.random]
+                h2.random = h2_rand
+            h1 = h1.next
+        return d[head]
+
+
+
+
+
+
 

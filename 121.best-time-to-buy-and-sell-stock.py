@@ -4,6 +4,8 @@
 # [121] Best Time to Buy and Sell Stock
 #
 class Solution:
+    # good but long
+    
     def maxProfit(self, prices: List[int]) -> int:
         if not prices:
             return 0
@@ -18,4 +20,11 @@ class Solution:
                 min_p = price
                 max_p = -1
         return res
-
+    """
+    def maxProfit(self, prices: List[int]) -> int:
+        s1 = s2 = -float("inf")
+        for price in prices:
+            s1 = max(s1, -price)
+            s2 = max(s2, s1 + price)
+        return max(s2, 0)
+    """

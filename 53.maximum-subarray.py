@@ -4,6 +4,7 @@
 # [53] Maximum Subarray
 #
 class Solution:
+    """
     def maxSubArray(self, nums):
         n = len(nums)
         max_sum = nums[0]
@@ -32,5 +33,27 @@ class Solution:
             return nums[0], nums[0]
         concat_l, max_l= self.maxSubArray(nums[:n//2], True)
         concat_r, max_r = self.maxSubArray(nums[n//2:], False)
+    """
+    """
+    def maxSubArray(self, nums):
+        res = nums[0]
+        temp = 0
+        for i in range(len(nums)):
+            res = max(nums[i], res)
+            temp += nums[i]
+            if temp > 0:
+                res = max(temp, res)
+            else:
+                temp = 0
+        return res
+    """
+    def maxSubArray(self, nums):
+        res = nums[0]
+        temp = nums[0] # add to this index
+        for num in nums[1:]:
+            temp = max(num, temp+num)
+            res = max(res, temp)
+        return res
+
 
 #print(Solution().maxSubArray([-1,0,-2]))
